@@ -2,6 +2,9 @@ package com.example.ToneMatrix;
 
 import android.app.Activity;
 import android.content.pm.ActivityInfo;
+import android.graphics.Color;
+import android.graphics.MaskFilter;
+import android.graphics.Paint;
 import android.os.Bundle;
 
 public class MainActivity extends Activity {

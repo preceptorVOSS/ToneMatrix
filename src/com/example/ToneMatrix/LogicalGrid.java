@@ -16,6 +16,7 @@ public class LogicalGrid {
     public LogicalGrid(int splitWidth, int splitHeight) {
         _splitWidth = splitWidth;
         _splitHeight = splitHeight;
+        SetupPositions();
     }
 
     public RectF getPositionToFill(float x, float y) {
