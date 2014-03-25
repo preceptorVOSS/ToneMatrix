@@ -2,6 +2,7 @@ package com.example.ToneMatrix;
 
 import android.content.Context;
 import android.graphics.*;
+import android.os.AsyncTask;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -69,6 +70,8 @@ public class Grid extends View {
 
         calculateLinePlacements();
         drawGrid();
+        //TrackOrgTask trackOrgTask = new TrackOrgTask();
+        //trackOrgTask.execute();
     }
 
     @Override
@@ -134,6 +137,7 @@ public class Grid extends View {
         _path.lineTo(_x, _y);
         _canvas.drawPath(_path, _line);
         _path.reset();
+        parseGrid();
     }
 
     @Override
@@ -159,4 +163,55 @@ public class Grid extends View {
         }
         return true;
     }
+
+    public class TrackOrgTask extends AsyncTask<Void, Void, Void> {
+
+        boolean ready;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            ready = true;
+        }
+
+        @Override
+        protected Void doInBackground(Void... params) {
+
+            while(ready) {
+                ready = false;
+                parseGrid();
+            }
+
+            return null;
+        }
+
+    }
+
+    private void parseGrid() {
+        boolean[][] currentBoolean = _logicalGrid.returnPositions();
+        boolean[] columns = new boolean[currentBoolean[0].length];
+        for (int r = 0; r < currentBoolean.length; r++) {
+            for (int c = 0; c < columns.length; c++) {
+                if (currentBoolean[r][c] == true) columns[c] = true;
+            }
+        }
+        playGrid(columns);
+    }
+
+    private void playGrid(boolean[] columns) {
+
+        AudioGenerator audio = new AudioGenerator(8000);
+        double[] silence = audio.getSinWave(200, 8000, 0);
+        double[] doNote = audio.getSinWave(2400, 8000, 523.25);
+        double[] longSilence = audio.getSinWave(2400, 8000, 0);
+        audio.createPlayer();
+        for (int i = 0; i < columns.length; i++) {
+            if (columns[i]) audio.writeSound(doNote);
+            else audio.writeSound(longSilence);
+            audio.writeSound(silence);
+        }
+        audio.destroyAudioTrack();
+    }
+
+
 }

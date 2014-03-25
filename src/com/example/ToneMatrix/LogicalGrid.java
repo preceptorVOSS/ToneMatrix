@@ -60,4 +60,14 @@ public class LogicalGrid {
             }
         }
     }
+
+    public boolean[][] returnPositions() {
+        boolean[][] booleanGrid = new boolean[_positions.length][_positions[0].length];
+        for (int r = 0; r < _positions.length; r++) {
+            for (int c = 0; c < _positions[r].length; c++) {
+                booleanGrid[r][c] = _positions[r][c].isFilled();
+            }
+        }
+        return booleanGrid;
+    }
 }
