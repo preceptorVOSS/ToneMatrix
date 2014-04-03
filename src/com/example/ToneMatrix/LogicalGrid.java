@@ -12,24 +12,42 @@ public class LogicalGrid {
     private int _splitWidth;
     private int _splitHeight;
     GridPosition[][] _positions;
+    private String[] topRows;
 
     public LogicalGrid(int splitWidth, int splitHeight) {
         _splitWidth = splitWidth;
         _splitHeight = splitHeight;
+        topRows = new String[16];
         SetupPositions();
     }
 
-    public RectF getPositionToFill(float x, float y) {
+    public void getPositionToFill(float x, float y) {
         for(int row = 0; row <= 7; row++) {
             for(int col = 0; col <= 15; col++) {
-                if(_positions[row][col].contains(x, y) && !_positions[row][col].filled) {
-                    RectF toReturn = new RectF(_positions[row][col]);
-                    _positions[row][col].filled = true;
-                    return toReturn;
+                if(_positions[row][col].contains(x, y) && !_positions[row][col].isFilled()) {
+                    //RectF toReturn = new RectF(_positions[row][col]);
+                    _positions[row][col].setFilled(true);
+                    //return toReturn;
+                    if(row < 4) {
+                        switch(row) {
+                            case 0:
+                                topRows[col] += "A";
+                                break;
+                            case 1:
+                                topRows[col] += "G";
+                                break;
+                            case 2:
+                                topRows[col] += "E";
+                                break;
+                            default:
+                                topRows[col] += "C";
+                                break;
+                        }
+                    }
                 }
             }
         }
-        return null;
+        //return null;
     }
 
     private class GridPosition extends RectF {
@@ -52,12 +70,18 @@ public class LogicalGrid {
 
     private void SetupPositions() {
         _positions = new GridPosition[8][16];
+
         // set up matrix
         for(int row = 0; row <= 7; row++) {
             for(int col = 0; col <=15; col++) {
                 _positions[row][col] = new GridPosition(col * _splitWidth, row * _splitHeight,
                         (col + 1) * _splitWidth, (row + 1) * _splitHeight);
             }
+        }
+
+        // set up topRows
+        for (int col = 0; col < 16; col++){
+            topRows[col] = "";
         }
     }
 
@@ -69,5 +93,9 @@ public class LogicalGrid {
             }
         }
         return booleanGrid;
+    }
+
+    public String[] getTopRows() {
+        return topRows;
     }
 }

@@ -6,6 +6,9 @@ import android.os.AsyncTask;
 import android.view.MotionEvent;
 import android.view.View;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by Dan Voss on 2/17/14.
  * This code is taken and adapted from the following tutorial:
@@ -37,6 +40,13 @@ public class Grid extends View {
 
     private LogicalGrid _logicalGrid;
 
+    static String[] topRows;
+    static Notes notes;
+    TrackOrgTask task;
+
+    private boolean drawMode = true;
+    private boolean isCreated = false;
+
     public Grid(Context context) {
         super(context);
         _paint = new Paint();
@@ -57,12 +67,30 @@ public class Grid extends View {
         _blur = new BlurMaskFilter(8, BlurMaskFilter.Blur.NORMAL);
     }
 
+    public void stopGrid() {
+        if (task != null) {
+            task.stop();
+        }
+        task = new TrackOrgTask();
+        //drawMode = true;
+    }
+
+    private void playGrid() {
+        task = new TrackOrgTask();
+        task.execute();
+        //drawMode = false;
+    }
+
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+
         _height = View.MeasureSpec.getSize(heightMeasureSpec);
         _width = View.MeasureSpec.getSize(widthMeasureSpec);
 
         setMeasuredDimension(_width, _height);
+
+        /*if (isCreated)
+            return;*/
 
         _bitmap = Bitmap.createBitmap(_width, _height, Bitmap.Config.ARGB_8888);
         _canvas = new Canvas(_bitmap);
@@ -70,8 +98,10 @@ public class Grid extends View {
 
         calculateLinePlacements();
         drawGrid();
-        //TrackOrgTask trackOrgTask = new TrackOrgTask();
-        //trackOrgTask.execute();
+
+        //isCreated = true;
+        task = new TrackOrgTask();
+        task.execute();
     }
 
     @Override
@@ -99,6 +129,10 @@ public class Grid extends View {
 
         _logicalGrid = new LogicalGrid(splitWidth, splitHeight);
 
+        notes = new Notes(8000);
+        topRows = new String[16];
+        for (int x = 0; x < topRows.length; x++)
+            topRows[x] = "";
     }
 
     private void drawGrid() {
@@ -137,11 +171,14 @@ public class Grid extends View {
         _path.lineTo(_x, _y);
         _canvas.drawPath(_path, _line);
         _path.reset();
-        parseGrid();
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
+        if (!drawMode) {
+            return true;
+        }
+
         float x = event.getX();
         float y = event.getY();
 
@@ -149,6 +186,7 @@ public class Grid extends View {
             case MotionEvent.ACTION_DOWN:
                 touch_start(x, y);
                 _logicalGrid.getPositionToFill(x, y);
+                stopGrid();
                 invalidate();
                 break;
             case MotionEvent.ACTION_MOVE:
@@ -158,6 +196,7 @@ public class Grid extends View {
                 break;
             case MotionEvent.ACTION_UP:
                 touch_up();
+                playGrid();
                 invalidate();
                 break;
         }
@@ -166,52 +205,39 @@ public class Grid extends View {
 
     public class TrackOrgTask extends AsyncTask<Void, Void, Void> {
 
-        boolean ready;
+        MusicPlayer musicPlayer;
 
         @Override
         protected void onPreExecute() {
-            super.onPreExecute();
-            ready = true;
+            musicPlayer = new MusicPlayer(parseGrid());
         }
 
         @Override
         protected Void doInBackground(Void... params) {
 
-            while(ready) {
-                ready = false;
-                parseGrid();
-            }
+            musicPlayer.play();
 
             return null;
         }
 
+        public void stop() {
+            if (musicPlayer != null)
+                musicPlayer.stop();
+            musicPlayer = null;
+        }
+
     }
 
-    private void parseGrid() {
+    private List<double[]> parseGrid() {
         boolean[][] currentBoolean = _logicalGrid.returnPositions();
-        boolean[] columns = new boolean[currentBoolean[0].length];
-        for (int r = 0; r < currentBoolean.length; r++) {
-            for (int c = 0; c < columns.length; c++) {
-                if (currentBoolean[r][c] == true) columns[c] = true;
-            }
-        }
-        playGrid(columns);
+        String[] topRows = _logicalGrid.getTopRows();
+
+        List<double[]> allColumns = new ArrayList<double[]>();
+
+        for (int c = 0; c < topRows.length; c++)
+            allColumns.add(notes.getPhrase(topRows[c]));
+
+        return allColumns;
     }
-
-    private void playGrid(boolean[] columns) {
-
-        AudioGenerator audio = new AudioGenerator(8000);
-        double[] silence = audio.getSinWave(200, 8000, 0);
-        double[] doNote = audio.getSinWave(2400, 8000, 523.25);
-        double[] longSilence = audio.getSinWave(2400, 8000, 0);
-        audio.createPlayer();
-        for (int i = 0; i < columns.length; i++) {
-            if (columns[i]) audio.writeSound(doNote);
-            else audio.writeSound(longSilence);
-            audio.writeSound(silence);
-        }
-        audio.destroyAudioTrack();
-    }
-
 
 }

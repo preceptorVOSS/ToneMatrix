@@ -51,6 +51,13 @@ public class AudioGenerator {
         audioTrack.write(generatedSound, 0, generatedSound.length);
     }
 
+    public void reloadAudioTrack() {
+        audioTrack.stop();
+        audioTrack.reloadStaticData();
+        audioTrack.setPlaybackHeadPosition(0);
+        audioTrack.play();
+    }
+
     public void destroyAudioTrack() {
         audioTrack.stop();
         audioTrack.release();
