@@ -7,20 +7,39 @@ import java.util.List;
  */
 public class MusicPlayer {
 
-    private AudioGenerator audio;
+    private AudioGenerator topAudio;
+    private AudioGenerator bottomAudio;
     private boolean play = true;
-    private List<double[]> track;
+    private List<double[]> lowerTrack;
+    private List<double[]> upperTrack;
 
-    public MusicPlayer(List<double[]> track) {
-        this.track = track;
-        audio = new AudioGenerator(8000);
-        audio.createPlayer();
+    public MusicPlayer() {
+        //this.track = track;
+        topAudio = new AudioGenerator(8000);
+        bottomAudio = new AudioGenerator(8000);
+        topAudio.createPlayer();
+        bottomAudio.createPlayer();
     }
 
-    public void play() {
+    public void setTracks(List<double[]> lowerTrack, List<double[]> upperTrack) {
+        this.lowerTrack = lowerTrack;
+        this.upperTrack = upperTrack;
+    }
+
+    public void playTop() {
         while (play) {
-            for (double[] phrase : track) {
-                audio.writeSound(phrase);
+            for (double[] phrase : upperTrack) {
+                topAudio.writeSound(phrase);
+                if (play == false)
+                    break;
+            }
+        }
+    }
+
+    public void playBottom() {
+        while (play) {
+            for (double[] phrase : lowerTrack) {
+                bottomAudio.writeSound(phrase);
                 if (play == false)
                     break;
             }
@@ -29,7 +48,8 @@ public class MusicPlayer {
 
     public void stop() {
         play = false;
-        audio.destroyAudioTrack();
+        topAudio.destroyAudioTrack();
+        bottomAudio.destroyAudioTrack();
     }
 
 }

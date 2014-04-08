@@ -1,13 +1,25 @@
 package com.example.ToneMatrix;
 
 /**
- * Created by veritoff on 3/31/14.
+ * Created by Dan Voss on 3/31/14.
  */
-public enum Pitch {
+public enum UpperPitch {
+    A (440) {
+        @Override
+        public String toString() {
+            return "A";
+        }
+    },
     C (523.25) {
         @Override
         public String toString() {
             return "C";
+        }
+    },
+    D (587.33) {
+        @Override
+        public String toString() {
+            return "D";
         }
     },
     E (659.26) {
@@ -22,16 +34,16 @@ public enum Pitch {
             return "G";
         }
     },
-    A (880) {
+    a (880) {
         @Override
         public String toString() {
-            return "A";
+            return "a";
         }
     };
 
     private final double frequency;
 
-    Pitch(double frequency) {
+    UpperPitch(double frequency) {
         this.frequency = frequency;
     }
 

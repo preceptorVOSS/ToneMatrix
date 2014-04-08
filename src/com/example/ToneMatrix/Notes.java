@@ -3,12 +3,12 @@ package com.example.ToneMatrix;
 import java.util.HashMap;
 
 /**
- * Created by veritoff on 3/25/14.
+ * Created by Dan Voss on 3/25/14.
  */
 public class Notes {
 
     int sampleRate;
-    static final int SAMPLES = 2600;
+    static final int SAMPLES = 4000;
 
     double[] silence;
 
@@ -19,6 +19,8 @@ public class Notes {
     HashMap<String, double[]> threeBeats;
     HashMap<String, double[]> fourBeats;
 
+    HashMap<String, double[]> longNotes;
+
     public Notes(int sampleRate) {
         this.sampleRate = sampleRate;
         generateNotes = new AudioGenerator(sampleRate);
@@ -28,6 +30,8 @@ public class Notes {
         twoBeats = generateTwoBeats();
         threeBeats = generateThreeBeats();
         fourBeats = generateFourBeats();
+
+        longNotes = generateLongNotes();
     }
 
     private double[] generateSilence() {
@@ -44,8 +48,8 @@ public class Notes {
         tempSilence = generateNotes.getSinWave(200, sampleRate, 0);
         HashMap<String, double[]> oneBeat = new HashMap<String, double[]>();
 
-        for (Pitch p : Pitch.values()) {
-            temp = generateNotes.getSinWave(2400, sampleRate, p.frequency());
+        for (UpperPitch p : UpperPitch.values()) {
+            temp = generateNotes.getSinWave(3800, sampleRate, p.frequency());
             phrase = new double[SAMPLES];
 
             for (int x = 0; x < temp.length; x++)
@@ -68,13 +72,13 @@ public class Notes {
         HashMap<String, double[]> twoBeats = new HashMap<String, double[]>();
         tempSilence = generateNotes.getSinWave(200, sampleRate, 0);
 
-        for (Pitch p1 : Pitch.values()) {
-            for (Pitch p2 : Pitch.values()) {
+        for (UpperPitch p1 : UpperPitch.values()) {
+            for (UpperPitch p2 : UpperPitch.values()) {
                 if (p1 == p2)
                     continue;
 
-                temp1 = generateNotes.getSinWave(1100, sampleRate, p1.frequency());
-                temp2 = generateNotes.getSinWave(1100, sampleRate, p2.frequency());
+                temp1 = generateNotes.getSinWave(1800, sampleRate, p1.frequency());
+                temp2 = generateNotes.getSinWave(1800, sampleRate, p2.frequency());
                 phrase = new double[SAMPLES];
 
                 for (int x = 0; x < temp1.length; x++)
@@ -102,21 +106,21 @@ public class Notes {
         double[] tempSilence1, tempSilence2, temp1, temp2, temp3;
 
         HashMap<String, double[]> threeBeats = new HashMap<String, double[]>();
-        tempSilence1 = generateNotes.getSinWave(115, sampleRate, 0);
-        tempSilence2 = generateNotes.getSinWave(120, sampleRate, 0);
+        tempSilence1 = generateNotes.getSinWave(200, sampleRate, 0);
+        tempSilence2 = generateNotes.getSinWave(150, sampleRate, 0);
 
-        for (Pitch p1 : Pitch.values()) {
-            for (Pitch p2 : Pitch.values()) {
+        for (UpperPitch p1 : UpperPitch.values()) {
+            for (UpperPitch p2 : UpperPitch.values()) {
                 if (p1 == p2)
                     continue;
 
-                for (Pitch p3 : Pitch.values()) {
+                for (UpperPitch p3 : UpperPitch.values()) {
                     if ((p1 == p3) | (p2 == p3))
                         continue;
 
-                    temp1 = generateNotes.getSinWave(750, sampleRate, p1.frequency());
-                    temp2 = generateNotes.getSinWave(750, sampleRate, p2.frequency());
-                    temp3 = generateNotes.getSinWave(750, sampleRate, p3.frequency());
+                    temp1 = generateNotes.getSinWave(1150, sampleRate, p1.frequency());
+                    temp2 = generateNotes.getSinWave(1150, sampleRate, p2.frequency());
+                    temp3 = generateNotes.getSinWave(1150, sampleRate, p3.frequency());
                     phrase = new double[SAMPLES];
 
                     for (int x = 0; x < temp1.length; x++)
@@ -150,25 +154,25 @@ public class Notes {
         double[] tempSilence, temp1, temp2, temp3, temp4;
 
         HashMap<String, double[]> fourBeats = new HashMap<String, double[]>();
-        tempSilence = generateNotes.getSinWave(100, sampleRate, 0);
+        tempSilence = generateNotes.getSinWave(150, sampleRate, 0);
 
-        for (Pitch p1 : Pitch.values()) {
-            for (Pitch p2 : Pitch.values()) {
+        for (UpperPitch p1 : UpperPitch.values()) {
+            for (UpperPitch p2 : UpperPitch.values()) {
                 if (p1 == p2)
                     continue;
 
-                for (Pitch p3 : Pitch.values()) {
+                for (UpperPitch p3 : UpperPitch.values()) {
                     if ((p1 == p3) | (p2 == p3))
                         continue;
 
-                    for (Pitch p4 : Pitch.values()) {
+                    for (UpperPitch p4 : UpperPitch.values()) {
                         if ((p1 == p4) | (p2 == p4) | (p3 == p4))
                             continue;
 
-                        temp1 = generateNotes.getSinWave(550, sampleRate, p1.frequency());
-                        temp2 = generateNotes.getSinWave(550, sampleRate, p2.frequency());
-                        temp3 = generateNotes.getSinWave(550, sampleRate, p3.frequency());
-                        temp4 = generateNotes.getSinWave(550, sampleRate, p4.frequency());
+                        temp1 = generateNotes.getSinWave(850, sampleRate, p1.frequency());
+                        temp2 = generateNotes.getSinWave(850, sampleRate, p2.frequency());
+                        temp3 = generateNotes.getSinWave(850, sampleRate, p3.frequency());
+                        temp4 = generateNotes.getSinWave(850, sampleRate, p4.frequency());
                         phrase = new double[SAMPLES];
 
                         for (int x = 0; x < temp1.length; x++)
@@ -204,7 +208,19 @@ public class Notes {
         return fourBeats;
     }
 
-    public double[] getPhrase(String type) {
+    private HashMap<String, double[]> generateLongNotes() {
+        double[] phrase;
+        HashMap<String, double[]> longNotes = new HashMap<String, double[]>();
+
+        for (LowerPitch p : LowerPitch.values()) {
+            phrase = generateNotes.getSinWave(4000, sampleRate, p.getFrequency());
+            longNotes.put(p.toString(), phrase);
+        }
+
+        return longNotes;
+    }
+
+    public double[] getUpperPhrase(String type) {
         double[] phrase;
 
         switch(type.length()) {
@@ -226,6 +242,13 @@ public class Notes {
         }
         return phrase;
 
+    }
+
+    public double[] getLowerPhrase(String note) {
+        if (note.length() < 1)
+            return silence;
+        else
+            return longNotes.get(note);
     }
 
 }

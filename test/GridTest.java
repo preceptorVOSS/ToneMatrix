@@ -34,7 +34,7 @@ public class GridTest extends ActivityUnitTestCase<MainActivity>{
         for (int i = 0; i < temp.length; i++)
             array[i + pointer] = temp[i];
 
-        assertEquals(notes.getPhrase("C"), array);
+        assertEquals(notes.getUpperPhrase("C"), array);
     }
 
 }

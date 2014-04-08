@@ -13,6 +13,7 @@ public class LogicalGrid {
     private int _splitHeight;
     GridPosition[][] _positions;
     private String[] topRows;
+    private BottomRows bottomRows;
 
     public LogicalGrid(int splitWidth, int splitHeight) {
         _splitWidth = splitWidth;
@@ -31,17 +32,30 @@ public class LogicalGrid {
                     if(row < 4) {
                         switch(row) {
                             case 0:
-                                topRows[col] += "A";
+                                topRows[col] += "4";
                                 break;
                             case 1:
-                                topRows[col] += "G";
+                                topRows[col] += "3";
                                 break;
                             case 2:
-                                topRows[col] += "E";
+                                topRows[col] += "2";
                                 break;
                             default:
-                                topRows[col] += "C";
+                                topRows[col] += "1";
                                 break;
+                        }
+                    }
+                    if(row >= 4) {
+                        bottomRows.iterateTotal();
+                        bottomRows.iterateRows(row-4);
+                        if (col < 4) {
+                            bottomRows.iterateQuadrants(0);
+                        } else if (col < 8) {
+                            bottomRows.iterateQuadrants(1);
+                        } else if (col < 12) {
+                            bottomRows.iterateQuadrants(2);
+                        } else {
+                            bottomRows.iterateQuadrants(3);
                         }
                     }
                 }
@@ -83,6 +97,9 @@ public class LogicalGrid {
         for (int col = 0; col < 16; col++){
             topRows[col] = "";
         }
+
+        // set up bottomRows
+        bottomRows = new BottomRows();
     }
 
     public boolean[][] returnPositions() {
@@ -96,6 +113,27 @@ public class LogicalGrid {
     }
 
     public String[] getTopRows() {
-        return topRows;
+        String[] bottom = bottomRows.getStringArray();
+        String[] top = new String[topRows.length];
+        for (int x = 0; x < bottom.length; x++) {
+            top[x] = topRows[x];
+            if ((bottom[x].contains("C")) || (bottom[x].contains("F")) || (bottom[x].contains("G")) || (bottom[x].contains("B"))) {
+                top[x] = top[x].replace("1", "C");
+                top[x] = top[x].replace("2", "E");
+                top[x] = top[x].replace("3", "G");
+                top[x] = top[x].replace("4", "a");
+            } else {
+                top[x] = top[x].replace("1", "A");
+                top[x] = top[x].replace("2", "C");
+                top[x] = top[x].replace("3", "D");
+                top[x] = top[x].replace("4", "E");
+            }
+        }
+
+        return top;
+    }
+
+    public String[] getBottomRows() {
+        return bottomRows.getStringArray();
     }
 }

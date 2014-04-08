@@ -2,7 +2,6 @@ package com.example.ToneMatrix;
 
 import android.content.Context;
 import android.graphics.*;
-import android.os.AsyncTask;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -16,6 +15,9 @@ import java.util.List;
  *
  * Additional code has been adapted from the android API fingerpaint tutorial:
  * https://gitorious.org/freebroid/development/source/62e92d7a2a3fd2798901ec2e7c452ff0e4067163:samples/ApiDemos/src/com/example/android/apis/graphics/FingerPaint.java#L77
+ *
+ * More code (for threading) was inspired by code from here:
+ * http://www.martinhoeller.net/2012/01/13/developing-a-musical-instrument-app-for-android/
  */
 public class Grid extends View {
 
@@ -42,10 +44,13 @@ public class Grid extends View {
 
     static String[] topRows;
     static Notes notes;
-    TrackOrgTask task;
+    //TrackOrgTask task;
+
+    PlayThread upperThread;
+    PlayThread lowerThread;
 
     private boolean drawMode = true;
-    private boolean isCreated = false;
+    //private boolean isCreated = false;
 
     public Grid(Context context) {
         super(context);
@@ -68,17 +73,27 @@ public class Grid extends View {
     }
 
     public void stopGrid() {
-        if (task != null) {
-            task.stop();
-        }
-        task = new TrackOrgTask();
+//        if (task != null) {
+//            task.stop();
+//        }
+//        task = new TrackOrgTask();
         //drawMode = true;
+        if (upperThread != null)
+            upperThread.requestStop();
+        if (lowerThread != null)
+            lowerThread.requestStop();
     }
 
     private void playGrid() {
-        task = new TrackOrgTask();
-        task.execute();
+//        task = new TrackOrgTask();
+//        task.execute();
         //drawMode = false;
+
+        upperThread = new PlayThread(parseTopRows());
+        lowerThread = new PlayThread(parseBottomRows());
+        upperThread.start();
+        lowerThread.start();
+
     }
 
     @Override
@@ -100,8 +115,12 @@ public class Grid extends View {
         drawGrid();
 
         //isCreated = true;
-        task = new TrackOrgTask();
-        task.execute();
+//        task = new TrackOrgTask();
+//        task.execute();
+        upperThread = new PlayThread(parseTopRows());
+        lowerThread = new PlayThread(parseBottomRows());
+        upperThread.start();
+        lowerThread.start();
     }
 
     @Override
@@ -203,41 +222,86 @@ public class Grid extends View {
         return true;
     }
 
-    public class TrackOrgTask extends AsyncTask<Void, Void, Void> {
+   /* public class TrackOrgTask extends AsyncTask<Void, Void, Void> {
 
         MusicPlayer musicPlayer;
 
         @Override
         protected void onPreExecute() {
-            musicPlayer = new MusicPlayer(parseGrid());
+            musicPlayer = new MusicPlayer();
+            musicPlayer.setTracks(parseBottomRows(), parseTopRows());
         }
 
         @Override
         protected Void doInBackground(Void... params) {
 
-            musicPlayer.play();
+            musicPlayer.playTop();
 
             return null;
         }
 
         public void stop() {
-            if (musicPlayer != null)
+            if (musicPlayer != null) {
                 musicPlayer.stop();
-            musicPlayer = null;
+                musicPlayer = null;
+            }
+        }
+
+    }*/
+
+    private class PlayThread extends Thread {
+
+        List<double[]> track;
+        boolean play = true;
+        AudioGenerator audio;
+
+        public PlayThread(List<double[]> track) {
+            super();
+            this.track = track;
+        }
+
+        public void run() {
+
+            audio = new AudioGenerator(8000);
+            audio.createPlayer();
+
+            while (play) {
+                for (double[] phrase : track) {
+                    audio.writeSound(phrase);
+                    if (!play)
+                        break;
+                }
+            }
+            audio.destroyAudioTrack();
+        }
+
+        public synchronized void requestStop() {
+            play = false;
         }
 
     }
 
-    private List<double[]> parseGrid() {
-        boolean[][] currentBoolean = _logicalGrid.returnPositions();
+    private List<double[]> parseTopRows() {
+        // boolean[][] currentBoolean = _logicalGrid.returnPositions();
         String[] topRows = _logicalGrid.getTopRows();
 
         List<double[]> allColumns = new ArrayList<double[]>();
 
         for (int c = 0; c < topRows.length; c++)
-            allColumns.add(notes.getPhrase(topRows[c]));
+            allColumns.add(notes.getUpperPhrase(topRows[c]));
 
         return allColumns;
     }
 
+    private List<double[]> parseBottomRows() {
+
+        String[] bottomRows = _logicalGrid.getBottomRows();
+
+        List<double[]> allColumns = new ArrayList<double[]>();
+
+        for (int c = 0; c < bottomRows.length; c++)
+            allColumns.add(notes.getLowerPhrase(bottomRows[c]));
+
+        return allColumns;
+    }
 }
