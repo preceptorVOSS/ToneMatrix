@@ -12,15 +12,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bf8d7f8d-662d-41d5-9044-b14b175b1032" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/example/ToneMatrix/BottomRows.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/example/ToneMatrix/LowerPitch.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/example/ToneMatrix/Pitch.java" afterPath="$PROJECT_DIR$/src/com/example/ToneMatrix/UpperPitch.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AndroidManifest.xml" afterPath="$PROJECT_DIR$/AndroidManifest.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/ToneMatrix/Grid.java" afterPath="$PROJECT_DIR$/src/com/example/ToneMatrix/Grid.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/GridTest.java" afterPath="$PROJECT_DIR$/test/GridTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/ToneMatrix/LogicalGrid.java" afterPath="$PROJECT_DIR$/src/com/example/ToneMatrix/LogicalGrid.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/ToneMatrix/MusicPlayer.java" afterPath="$PROJECT_DIR$/src/com/example/ToneMatrix/MusicPlayer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/ToneMatrix/Notes.java" afterPath="$PROJECT_DIR$/src/com/example/ToneMatrix/Notes.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="ToneMatrix.iws" />
@@ -85,10 +77,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Grid.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="Grid.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/example/ToneMatrix/Grid.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="269" column="0" selection-start="7519" selection-end="7519" vertical-scroll-proportion="0.0" vertical-offset="3850" max-vertical-offset="4605">
+            <state line="56" column="35" selection-start="1506" selection-end="1506" vertical-scroll-proportion="0.36407766" vertical-offset="525" max-vertical-offset="4635">
               <folding />
             </state>
           </provider>
@@ -97,7 +89,7 @@
       <file leaf-file-name="Notes.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/example/ToneMatrix/Notes.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="250" column="39" selection-start="9287" selection-end="9287" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3900">
+            <state line="250" column="39" selection-start="9287" selection-end="9287" vertical-scroll-proportion="0.0" vertical-offset="3750" max-vertical-offset="3900">
               <folding />
             </state>
           </provider>
@@ -106,7 +98,7 @@
       <file leaf-file-name="AudioGenerator.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/example/ToneMatrix/AudioGenerator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="49" column="0" selection-start="1552" selection-end="1552" vertical-scroll-proportion="0.0" vertical-offset="605" max-vertical-offset="1050">
+            <state line="49" column="0" selection-start="1552" selection-end="1552" vertical-scroll-proportion="0.0" vertical-offset="735" max-vertical-offset="1080">
               <folding />
             </state>
           </provider>
@@ -115,16 +107,16 @@
       <file leaf-file-name="LogicalGrid.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/example/ToneMatrix/LogicalGrid.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="118" column="32" selection-start="3938" selection-end="3938" vertical-scroll-proportion="0.0" vertical-offset="1634" max-vertical-offset="2115">
+            <state line="118" column="32" selection-start="3938" selection-end="3938" vertical-scroll-proportion="0.0" vertical-offset="1770" max-vertical-offset="2175">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AndroidManifest.xml" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="AndroidManifest.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="5" column="39" selection-start="261" selection-end="261" vertical-scroll-proportion="0.118858956" vertical-offset="0" max-vertical-offset="631">
+            <state line="5" column="39" selection-start="261" selection-end="261" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="345">
               <folding />
             </state>
           </provider>
@@ -133,7 +125,7 @@
       <file leaf-file-name="UpperPitch.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/example/ToneMatrix/UpperPitch.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="23" selection-start="191" selection-end="191" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="915">
+            <state line="9" column="23" selection-start="191" selection-end="191" vertical-scroll-proportion="0.0" vertical-offset="135" max-vertical-offset="915">
               <folding />
             </state>
           </provider>
@@ -166,17 +158,15 @@
         <option value="$PROJECT_DIR$/src/com/example/ToneMatrix/BottomRows.java" />
         <option value="$PROJECT_DIR$/src/com/example/ToneMatrix/MusicPlayer.java" />
         <option value="$PROJECT_DIR$/src/com/example/ToneMatrix/UpperPitch.java" />
-        <option value="$PROJECT_DIR$/src/com/example/ToneMatrix/Grid.java" />
         <option value="$PROJECT_DIR$/src/com/example/ToneMatrix/LogicalGrid.java" />
         <option value="$PROJECT_DIR$/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/src/com/example/ToneMatrix/Grid.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-1" />
-    <option name="y" value="-1" />
-    <option name="width" value="1282" />
-    <option name="height" value="781" />
+    <option name="width" value="1280" />
+    <option name="height" value="776" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -596,7 +586,8 @@
       <workItem from="1396641369303" duration="1341000" />
       <workItem from="1396656898419" duration="332000" />
       <workItem from="1396668372560" duration="1757000" />
-      <workItem from="1396984311129" duration="2238000" />
+      <workItem from="1396984311129" duration="2307000" />
+      <workItem from="1396994929027" duration="653000" />
     </task>
     <task id="LOCAL-00001" summary="Added rhythmic tones. Still need to thread them.">
       <created>1395763250641</created>
@@ -606,14 +597,18 @@
       <created>1396500779011</created>
       <updated>1396500779011</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Music successfully plays with few crashes!">
+      <created>1396986627568</created>
+      <updated>1396986627571</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="84890000" />
+    <option name="totallyTimeSpent" value="85612000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1" y="-1" width="1282" height="781" extended-state="6" />
+    <frame x="0" y="0" width="1280" height="776" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -648,16 +643,16 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
-      <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" x="100" y="100" width="1080" height="576" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" x="100" y="100" width="1080" height="576" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32978722" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20678514" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -675,8 +670,8 @@
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Android" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3237082" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout-to-restore>
   </component>
@@ -694,7 +689,8 @@
     </option>
     <MESSAGE value="Added rhythmic tones. Still need to thread them." />
     <MESSAGE value="Music plays for the top four rows!" />
-    <option name="LAST_COMMIT_MESSAGE" value="Music plays for the top four rows!" />
+    <MESSAGE value="Music successfully plays with few crashes!" />
+    <option name="LAST_COMMIT_MESSAGE" value="Music successfully plays with few crashes!" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -976,13 +972,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/ToneMatrix/Grid.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="269" column="0" selection-start="7519" selection-end="7519" vertical-scroll-proportion="0.0" vertical-offset="3850" max-vertical-offset="4605">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/example/ToneMatrix/LogicalGrid.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="118" column="32" selection-start="3938" selection-end="3938" vertical-scroll-proportion="0.0" vertical-offset="1634" max-vertical-offset="2115">
@@ -992,7 +981,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="39" selection-start="261" selection-end="261" vertical-scroll-proportion="0.118858956" vertical-offset="0" max-vertical-offset="631">
+        <state line="5" column="39" selection-start="261" selection-end="261" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="345">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/ToneMatrix/Grid.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="56" column="35" selection-start="1506" selection-end="1506" vertical-scroll-proportion="0.36407766" vertical-offset="525" max-vertical-offset="4635">
           <folding />
         </state>
       </provider>

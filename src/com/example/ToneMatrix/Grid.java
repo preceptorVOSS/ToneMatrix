@@ -54,6 +54,8 @@ public class Grid extends View {
 
     public Grid(Context context) {
         super(context);
+        this.setKeepScreenOn(true);
+
         _paint = new Paint();
         _paint.setColor(Color.BLACK);
         _paint.setStyle(Paint.Style.STROKE);
